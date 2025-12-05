@@ -10,7 +10,7 @@ const PORT = 3001;
 
 const allowedOrigins = [
   'http://localhost:5173', // For local development
-  'https://YOUR-VERCEL-DOMAIN.vercel.app', // <--- REPLACE THIS WITH YOUR ACTUAL VERCEL URL
+  'https://running-tracker-x6r2.onrender.com', // <--- REPLACE THIS WITH YOUR ACTUAL VERCEL URL
 ];
 
 const corsOptions: cors.CorsOptions = {
