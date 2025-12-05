@@ -5,7 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { type Workout } from '../types/workout'; // Use type-only import
 
-const API_URL = 'http://localhost:3001/api/workouts';
+const API_BASE_URL = 'https://running-tracker-x6r2.onrender.com';
+const API_URL = `${API_BASE_URL}/api/workouts`; 
 
 // Define the initial state structure for a new workout
 const EMPTY_WORKOUT: Workout = {
