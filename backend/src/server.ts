@@ -9,21 +9,27 @@ const app = express();
 // FIX 1: Use process.env.PORT for deployment
 const PORT = process.env.PORT || 3001; 
 
-const allowedOrigins = [
-  'http://localhost:5173', 
-  'https://running-tracker-x6r2.onrender.com', 
+// const allowedOrigins = [
+//   'https://running-tracker-x6r2.onrender.com', 
   
-  // 1. The Vercel Unique Deployment URL (for older builds/previews)
-  'https://run-tracker-frontend-m4g9gbuv-arukes-projects-0f3c87a8.vercel.app', 
+//   // 1. The Vercel Unique Deployment URL (for older builds/previews)
+//   'https://run-tracker-frontend-m4g9gbuv-arukes-projects-0f3c87a8.vercel.app', 
   
-  // 2. The Vercel PRIMARY DOMAIN (for the main site - CRITICAL FIX)
-  'https://run-tracker-frontend-eta.vercel.app', 
-];
+//   // 2. The Vercel PRIMARY DOMAIN (for the main site - CRITICAL FIX)
+//   'https://run-tracker-frontend-eta.vercel.app', 
+// ];
+
+// const corsOptions: cors.CorsOptions = {
+//   origin: allowedOrigins
+// };
 
 const corsOptions: cors.CorsOptions = {
-  origin: allowedOrigins
+  // SET THE ORIGIN TO THE WILDCARD
+  origin: '*', // <--- THIS ALLOWS EVERY DOMAIN
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Good practice to explicitly list methods
+  // If you used credentials (like cookies or sessions) you'd also need:
+  // credentials: true, 
 };
-
 
 // user credentials 
 const VALID_EMAIL = 'runner@example.com';
