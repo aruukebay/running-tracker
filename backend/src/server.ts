@@ -10,9 +10,14 @@ const app = express();
 const PORT = process.env.PORT || 3001; 
 
 const allowedOrigins = [
-  'http://localhost:5173', // For local development
-  'https://running-tracker-x6r2.onrender.com', // The API itself
-  'https://run-tracker-frontend-mtqjx4od3-arukes-projects-0f3c87a8.vercel.app', // <--- ADD THIS LINE
+  'http://localhost:5173', 
+  'https://running-tracker-x6r2.onrender.com', 
+  
+  // 1. The Vercel Unique Deployment URL (for older builds/previews)
+  'https://run-tracker-frontend-m4g9gbuv-arukes-projects-0f3c87a8.vercel.app', 
+  
+  // 2. The Vercel PRIMARY DOMAIN (for the main site - CRITICAL FIX)
+  'https://run-tracker-frontend-eta.vercel.app', 
 ];
 
 const corsOptions: cors.CorsOptions = {
