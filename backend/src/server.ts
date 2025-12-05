@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Workout } from './types/workout'; 
 
 const app = express();
-const PORT = 3001; 
+const PORT = process.env.PORT || 3001;
 
 const allowedOrigins = [
   'http://localhost:5173', // For local development
@@ -25,8 +25,8 @@ const VALID_PASSWORD = 'password123';
 
 // mock token to be stored on the frontend (usually a JWT in a real app)
 const MOCK_TOKEN = 'mock-auth-token-123-abc'; 
-app.use(express.json());
-app.use(cors(corsOptions));
+app.use(express.json()); 
+app.use(cors(corsOptions)); // Applies CORS rules
 
 // DB 
 let workouts: Workout[] = [
