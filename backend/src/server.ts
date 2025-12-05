@@ -22,6 +22,7 @@ const corsOptions: cors.CorsOptions = {
 // user credentials 
 const VALID_EMAIL = 'runner@example.com';
 const VALID_PASSWORD = 'password123';
+
 // mock token to be stored on the frontend (usually a JWT in a real app)
 const MOCK_TOKEN = 'mock-auth-token-123-abc'; 
 app.use(express.json());
@@ -118,7 +119,7 @@ app.post('/api/login', (req: Request, res: Response) => {
   const { email = '', password = '' } = req.body;
 
   // 1. Check if email and password match hardcoded values
-  if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+  if (email.trim() === VALID_EMAIL && password.trim() === VALID_PASSWORD) {
     // 2. Return success status and the token
     return res.json({ 
       success: true, 

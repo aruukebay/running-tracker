@@ -4,7 +4,7 @@ import React, { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const API_BASE_URL = 'https://running-tracker-x6r2.onrender.com/';
+const API_BASE_URL = 'https://running-tracker-x6r2.onrender.com';
 const API_URL = `${API_BASE_URL}/api/login`;
 const TOKEN_KEY = 'authToken'; // Key for localStorage
 
