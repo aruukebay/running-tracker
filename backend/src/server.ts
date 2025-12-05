@@ -24,7 +24,6 @@ const PORT = process.env.PORT || 3001;
 // };
 
 const corsOptions: cors.CorsOptions = {
-  // SET THE ORIGIN TO THE WILDCARD
   origin: '*', // <--- THIS ALLOWS EVERY DOMAIN
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Good practice to explicitly list methods
   // If you used credentials (like cookies or sessions) you'd also need:
