@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 3001;
 
 const allowedOrigins = [
   'http://localhost:5173', // For local development
-  'https://running-tracker-x6r2.onrender.com', 
+  'https://running-tracker-x6r2.onrender.com', // The API itself
+  'https://run-tracker-frontend-mtqjx4od3-arukes-projects-0f3c87a8.vercel.app', // <--- ADD THIS LINE
 ];
 
 const corsOptions: cors.CorsOptions = {
