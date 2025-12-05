@@ -1,10 +1,8 @@
-// src/components/WorkoutList.tsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import { type Workout } from '../types/workout';
 
-// Backend URL is crucial!
 const API_BASE_URL = 'https://running-tracker-x6r2.onrender.com';
 const API_URL = `${API_BASE_URL}/api/workouts`; 
 
@@ -16,13 +14,12 @@ const WorkoutList: React.FC = () => {
 
   useEffect(() => {
     fetchWorkouts();
-  }, []); // Empty dependency array means this runs only once after initial render
+  }, []); 
 
   const fetchWorkouts = async () => {
     setLoading(true);
     setError(null);
     try {
-      // Axios automatically parses the JSON response
       const response = await axios.get<Workout[]>(API_URL);
       setWorkouts(response.data);
     } catch (err) {
@@ -33,7 +30,6 @@ const WorkoutList: React.FC = () => {
     }
   };
 
-  // --- Rendering States ---
   if (loading) {
     return <div className="loading-state">Loading Workouts...</div>;
   }
@@ -50,10 +46,10 @@ const WorkoutList: React.FC = () => {
     <div className="dashboard-container">
       <header className="header">
         <h1>🏃‍♀️ Run Tracker Dashboard</h1>
-              {/* Placeholder for FAB/Create Button - will link to creation form later */}
+              {}
             <button
                   className="fab-button"
-                  onClick={() => navigate('/log')} // <--- You MUST be calling 'navigate' here
+                  onClick={() => navigate('/log')} 
               >
                   +
             </button>
@@ -61,7 +57,6 @@ const WorkoutList: React.FC = () => {
       
       <section className="workout-list">
         {workouts.map((workout) => (
-          // Individual Workout Card (easy to scan)
           <div key={workout.id} className="workout-card">
             <div className="card-header">
               <span className={`run-type ${workout.type.replace(/\s/g, '-').toLowerCase()}`}>
@@ -83,10 +78,10 @@ const WorkoutList: React.FC = () => {
 
             {workout.notes && <p className="run-notes">Notes: {workout.notes}</p>}
             
-            {/* Placeholder for Edit button */}
+            {}
                 <button
                     className="edit-button"
-                    onClick={() => navigate(`/edit/${workout.id}`, { state: { workout } })} // <--- And here
+                    onClick={() => navigate(`/edit/${workout.id}`, { state: { workout } })} 
                 >
                     Edit
                 </button>

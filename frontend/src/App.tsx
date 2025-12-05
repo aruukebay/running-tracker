@@ -1,9 +1,8 @@
-// frontend/src/App.tsx
 
 import WorkoutList from './components/WorkoutList';
 import WorkoutForm from './components/WorkoutForm';
-import LoginPage from './components/LoginPage'; // <-- NEW
-import PrivateRoute from './components/PrivateRoute'; // <-- NEW
+import LoginPage from './components/LoginPage'; 
+import PrivateRoute from './components/PrivateRoute'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -12,30 +11,30 @@ function App() {
       <div className="App">
         <Routes>
           
-          {/* PUBLIC ROUTE: Login Page */}
+          {}
           <Route path="/login" element={<LoginPage />} />
           
-          {/* PROTECTED ROUTES: All workout pages must be wrapped in PrivateRoute */}
+          {}
           
-          {/* Dashboard Route (Root Path) */}
+          {}
           <Route 
             path="/" 
-            element={<PrivateRoute><WorkoutList /></PrivateRoute>} // <-- PROTECTED
+            element={<PrivateRoute><WorkoutList /></PrivateRoute>} 
           />
           
-          {/* Log New Workout Route */}
+          {}
           <Route 
             path="/log" 
-            element={<PrivateRoute><WorkoutForm /></PrivateRoute>} // <-- PROTECTED
+            element={<PrivateRoute><WorkoutForm /></PrivateRoute>}
           />
           
-          {/* Edit Existing Workout Route */}
+          {}
           <Route 
             path="/edit/:workoutId" 
-            element={<PrivateRoute><WorkoutForm /></PrivateRoute>} // <-- PROTECTED
+            element={<PrivateRoute><WorkoutForm /></PrivateRoute>} 
           />
           
-          {/* Fallback */}
+          {}
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </div>

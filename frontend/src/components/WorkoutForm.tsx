@@ -1,75 +1,60 @@
-// src/components/WorkoutForm.tsx
-
 import React, { useState, type FormEvent, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { type Workout } from '../types/workout'; // Use type-only import
+import { type Workout } from '../types/workout';
 
 const API_BASE_URL = 'https://running-tracker-x6r2.onrender.com';
 const API_URL = `${API_BASE_URL}/api/workouts`; 
 
-// Define the initial state structure for a new workout
 const EMPTY_WORKOUT: Workout = {
   id: '',
-  date: new Date().toISOString().substring(0, 10), // Default to today's date (YYYY-MM-DD)
+  date: new Date().toISOString().substring(0, 10),
   distance: 0,
   duration: '00:00:00',
-  type: 'Easy Run', // Default type
+  type: 'Easy Run', 
   notes: '',
 };
 
 interface WorkoutFormProps {
-  // Optional prop for editing: If a workout is passed, we are in edit mode.
-  // We'll primarily use route params for ID lookup, but this structure is clean.
   initialWorkout?: Workout;
 }
 
 const WorkoutForm: React.FC<WorkoutFormProps> = () => {
   const navigate = useNavigate();
-  // We use URL parameters to determine if we are editing an existing workout
   const { workoutId } = useParams<{ workoutId: string }>(); 
   
-  // State to hold the form data
   const [formData, setFormData] = useState<Workout>(EMPTY_WORKOUT);
-  const isEditing = !!workoutId; // True if workoutId exists in the URL
+  const isEditing = !!workoutId; 
 
-  // --- Step A: Fetch Existing Workout Data for Edit Mode ---
   useEffect(() => {
     if (isEditing) {
       // ...
     }
   }, [isEditing, workoutId]);
   
-  // --- Step B: Handle Form Input Changes ---
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     
     setFormData(prevData => ({
       ...prevData,
-      // Convert distance to number, if needed, otherwise keep as string
       [name]: name === 'distance' ? parseFloat(value) || 0 : value,
     }));
   };
 
-  // --- Step C: Handle Form Submission (Create or Edit) ---
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
       if (isEditing) {
-        // EDIT MODE: PUT request
         await axios.put(`${API_URL}/${workoutId}`, formData);
         alert('Workout updated successfully!');
       } else {
-        // CREATE MODE: POST request
-        // The backend generates the ID, so we don't send the empty one.
         const { id, ...dataToSend } = formData;
         
         await axios.post(API_URL, dataToSend);
         alert('Workout logged successfully!');
       }
       
-      // Redirect back to the dashboard after success
       navigate('/');
       
     } catch (error) {
@@ -124,14 +109,14 @@ const WorkoutForm: React.FC<WorkoutFormProps> = () => {
           onChange={handleChange}
           required
         >
-          {/* Workout types defined in the interface */}
+          {/* Workout types*/}
           <option value="Easy Run">Easy Run </option>
           <option value="Long run">Long Run </option>
           <option value="Intervals">Intervals </option>
           <option value="Recovery">Recovery </option>
         </select>
         
-        {/* 5. Optional Notes */}
+        {/* 5. Notes */}
         <label>Notes</label>
         <textarea
           name="notes"

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'https://running-tracker-x6r2.onrender.com';
 const API_URL = `${API_BASE_URL}/api/login`;
-const TOKEN_KEY = 'authToken'; // Key for localStorage
+const TOKEN_KEY = 'authToken'; 
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -22,14 +22,12 @@ const LoginPage: React.FC = () => {
       const response = await axios.post(API_URL, { email, password });
 
       if (response.data.success && response.data.token) {
-        // SUCCESS: Save the token and redirect
         localStorage.setItem(TOKEN_KEY, response.data.token);
-        navigate('/'); // Redirect to the dashboard
+        navigate('/'); 
       } else {
         setError('Login failed. Please check credentials.');
       }
     } catch (err) {
-      // Handles 401 response from the server
       setError('Invalid email or password. Use runner@example.com / password123');
       console.error('Login error:', err);
     }
