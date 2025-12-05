@@ -8,9 +8,15 @@ import { Workout } from './types/workout';
 const app = express();
 const PORT = 3001; 
 
+const allowedOrigins = [
+  'http://localhost:5173', // For local development
+  'https://YOUR-VERCEL-DOMAIN.vercel.app', // <--- REPLACE THIS WITH YOUR ACTUAL VERCEL URL
+];
 
+const corsOptions: cors.CorsOptions = {
+  origin: allowedOrigins
+};
 
-// backend/src/server.ts
 
 
 // user credentials 
@@ -18,7 +24,8 @@ const VALID_EMAIL = 'runner@example.com';
 const VALID_PASSWORD = 'password123';
 // mock token to be stored on the frontend (usually a JWT in a real app)
 const MOCK_TOKEN = 'mock-auth-token-123-abc'; 
-
+app.use(express.json());
+app.use(cors(corsOptions));
 
 // DB 
 let workouts: Workout[] = [
