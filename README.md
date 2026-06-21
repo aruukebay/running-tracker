@@ -1,8 +1,8 @@
-# 🏃‍♂️ Running Tracker App
+# Running Tracker App
 
 A simple full-stack app for runners to log, track, and manage their daily workout data.
 
-## 🚀 Live Application Access
+## Live Application Access
 
 The application is fully live and accessible for testing.
 
